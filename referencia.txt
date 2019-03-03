@@ -1,0 +1,10 @@
+apostila
+	http://files.cod3r.com.br/apostila-react-redux.pdf
+
+nao é possivel alterar valores de props, sao somente leitura
+
+quando usa-se onChange={this.setTipo) em vez de onChange={e => this.setTipo(e))
+e no setTipo ele manipular um this.state para a propria classe, ele diz que setState e undefined.
+Uma solução para isso seria usar BIND (ex: this.setTipo = this.setTipo.bind(this)) no construtor
+
+
