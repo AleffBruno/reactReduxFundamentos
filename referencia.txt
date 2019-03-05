@@ -7,4 +7,10 @@ quando usa-se onChange={this.setTipo) em vez de onChange={e => this.setTipo(e))
 e no setTipo ele manipular um this.state para a propria classe, ele diz que setState e undefined.
 Uma solução para isso seria usar BIND (ex: this.setTipo = this.setTipo.bind(this)) no construtor
 
+quando chama-se uma funcao sem parenteses (ex: onChange={this.minhaFuncao}), por padrao
+ela ja passa o "evento" para a funcao, no caso a "minhaFuncao" espera um parametro (ex: function minhaFuncao(e)).
+No caso acima eu estou "PASSANDO" em vez de "INVOCANDO" uma funcao.
+ATENTE-SE que onChange={this.minhaFuncao}, o "this" nesse contexto seria o evento onChange, para falar
+que o "this" refere-se a classe, é necessario fazer um bind. (ex: onChange={this.minhaFuncao.bind(this)})
+
 
