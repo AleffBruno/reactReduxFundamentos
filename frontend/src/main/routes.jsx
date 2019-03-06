@@ -1,13 +1,18 @@
 import React from 'react';
-import { Router, Route, Redirect, hashHistory } from 'react-router'
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 
 import Todo from '../todo/todo';
 import About from '../about/about';
-import App from './App';
 
 export default props => (
     <Router>
-        <Route path="/" component={App}/>
+      <div>
+        {/* <Route exact path="*" component={App} />  ATENÇÃO!!, se deixar "qualquer rota acesse o component APP*, entao qualquer url que for acessada o component APP vai vir */}
+        <Route path="/todos" component={Todo} />
+        <Route path="/about" component={About} />
+        {/* REDIRECT ADIADO */}
+      </div>
     </Router>
 )
 
