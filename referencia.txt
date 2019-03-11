@@ -18,6 +18,8 @@ No caso acima eu estou "PASSANDO" em vez de "INVOCANDO" uma funcao.
 ATENTE-SE que onChange={this.minhaFuncao}, o "this" nesse contexto seria o evento onChange, para falar
 que o "this" refere-se a classe, é necessario fazer um bind. (ex: onChange={this.minhaFuncao.bind(this)})
 
+MUITA ATENÇÃO AO UTILIZAR/CHAMAR/INVOCAR/UTILIZAR FUNÇÕES COM/SEM PARENTESES
+
 reactRouter {
 	https://www.google.com/search?q=react-router-dom+tutorial&oq=react-router-dom+tutorial&aqs=chrome..69i57.4246j0j4&sourceid=chrome&ie=UTF-8
 	https://reacttraining.com/react-router/web/example/basic
