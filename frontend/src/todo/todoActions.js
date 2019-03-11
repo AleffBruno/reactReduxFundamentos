@@ -49,3 +49,19 @@ export const add = description => {
         }
     }
 }
+
+export const markAsDone = (todo) => {
+    return async dispatch => {
+        const resp = await axios.put(`${URL}/${todo._id}`,{...todo,done:true});
+        //dispatch({type:'TODO_MARKED_AS_DONE',payload:resp.data});
+        dispatch(search());
+    }
+}
+
+export const markAsPending = (todo) => {
+    return async dispatch => {
+        const resp = await axios.put(`${URL}/${todo._id}`,{...todo,done:false});
+        //dispatch({type:'TODO_MARKED_AS_PENDING',payload:resp.data});
+        dispatch(search());
+    }
+}
