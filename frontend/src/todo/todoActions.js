@@ -8,11 +8,15 @@ export const changeDescription = event => ({
 })
 
 export const search = () => {
-    const request = axios.get(`${URL}?sort=-createdAt`)
-    return {
-        type: 'TODO_SEARCHED',
-        payload: request
+    return async dispatch => {
+        const request = await axios.get(`${URL}?sort=-createdAt`)
+        dispatch({type:'TODO_SEARCHED', payload: request})
     }
+    // const request = axios.get(`${URL}?sort=-createdAt`)
+    // return {
+    //     type: 'TODO_SEARCHED',
+    //     payload: request
+    // }
 }
 
 // export const add = (description) => {
@@ -25,18 +29,23 @@ export const search = () => {
 //     ]
 // }
 
-export const add = description => {
-    return dispatch => {
-        axios.post(URL,{description})
-            .then(resp => dispatch({type:'TODO_ADDED',payload:resp.data}))
-            .then(resp => dispatch(search()))
-    }
-}
-
+// SEM ASYNC/AWAIT
 // export const add = description => {
-//     return async dispatch => {
-//         await axios.post(URL,{description})
-//         await dispatch({type:'TODO_ADDED',payload:resp.data})
-//         dispatch(search())
+//     return dispatch => {
+//         axios.post(URL,{description})
+//             .then(resp => dispatch({type:'TODO_ADDED',payload:resp.data}))
+//             .then(resp => dispatch(search()))
 //     }
 // }
+
+export const add = description => {
+    return async dispatch => {
+        try {
+            const response = await axios.post(URL,{description});
+            dispatch({type:'TODO_ADDED',payload:response.data})
+            dispatch(search())
+        } catch(e) {
+            console.log(e);
+        }
+    }
+}
