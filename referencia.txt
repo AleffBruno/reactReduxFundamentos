@@ -34,5 +34,5 @@ reactRouter {
 referencia de async/await nos multi retorno de actions (usado em todoActions.js)
 	https://www.youtube.com/watch?v=5ICoNfZynYo (6:12)
 
-130
+139
 

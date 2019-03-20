@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
 
 import ContentHeader from '../common/template/contentHeader';
 import Content from '../common/template/content';
@@ -7,8 +9,19 @@ import TabsHeader from '../common/tab/tabsHeader';
 import TabsContent from '../common/tab/tabsContent';
 import TabHeader from '../common/tab/tabHeader';
 import TabContent from '../common/tab/tabContent';
+import { selectTab } from '../common/tab/tabActions';
+import { showTabs } from '../common/tab/tabActions';
+
+import List from './billingCycleList'
+import Form from './billingCycleForm'
 
 class BillingCycles extends Component {
+
+    componentWillMount() {
+        this.props.selectTab('tabList')
+        this.props.showTabs('tabList','tabCreate')
+    }
+
     render() {
         return(
             <div>
@@ -22,8 +35,12 @@ class BillingCycles extends Component {
                             <TabHeader label='Excluir' icon='trash-o' target='tabDelete' />
                         </TabsHeader>
                         <TabsContent>
-                            <TabContent id='tabList'><h1>Lista</h1></TabContent>
-                            <TabContent id='tabCreate'><h1>Incluir</h1></TabContent>
+                            <TabContent id='tabList'>
+                                <List />
+                            </TabContent>
+                            <TabContent id='tabCreate'>
+                                <Form />
+                            </TabContent>
                             <TabContent id='tabUpdate'><h1>Alterar</h1></TabContent>
                             <TabContent id='tabDelete'><h1>Excluir</h1></TabContent>
                         </TabsContent>
@@ -34,4 +51,10 @@ class BillingCycles extends Component {
     }
 }
 
-export default BillingCycles
+const mapDispatchToProps = dispatch => bindActionCreators({
+    selectTab,
+    showTabs
+},dispatch);
+
+export default connect(null,mapDispatchToProps)(BillingCycles)
+//export default BillingCycles;
