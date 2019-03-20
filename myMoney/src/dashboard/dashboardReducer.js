@@ -1,4 +1,4 @@
-const INITIAL_STATE = {summary:{credit: 666, debt: 666}}
+const INITIAL_STATE = {summary:{credit: 999, debt: 999}}
 
 export default function(state = INITIAL_STATE, action) {
     switch (action.type) {
