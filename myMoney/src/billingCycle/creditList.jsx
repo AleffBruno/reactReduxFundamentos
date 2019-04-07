@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
-import {Field} from 'redux-form'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+//referencia para arrayInsert > https://redux-form.com/8.1.0/docs/api/actioncreators.md/ 
+import {Field,arrayInsert} from 'redux-form'
 import Grid from '../common/layout/grid'
 import Input from '../common/form/input'
 
 class CreditList extends Component {
+
+    //isso pode dar erro, pq se o cara clicar no idice 2, sendo que o 3 ja existe...oque ira acontecer?
+    add(index, item = {}) {
+        if(!this.props.readOnly) {
+            this.props.arrayInsert('billingCycleForm','credits', index, item)
+        }
+    }
 
     renderRows() {
         const list = this.props.list || []
@@ -13,7 +23,16 @@ class CreditList extends Component {
                     placeholder='informe o nome' readOnly={this.props.readOnly} /></td>
                 <td><Field name={`credits[${index}].value`} component={Input} 
                     placeholder='informe o valor' readOnly={this.props.readOnly}/></td>
-                <td></td>
+                <td>
+                    <button type="button" className='btn btn-success'
+                        onClick={() => this.add(index + 1)}>
+                        <i className='fa fa-plus'></i>
+                    </button>
+                    <button type="button" className='btn btn-warning'
+                        onClick={() => this.add(index + 1, item)}>
+                        <i className='fa fa-clone'></i>
+                    </button>
+                </td>
             </tr>
         ))
     }
@@ -28,7 +47,7 @@ class CreditList extends Component {
                             <tr>
                                 <th>Nome</th>
                                 <th>Valor</th>
-                                <th>Acao</th>
+                                <th className='table-actions'>Acao</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,4 +60,8 @@ class CreditList extends Component {
     }
 }
 
-export default CreditList
+const mapDispatchToProps = dispatch => bindActionCreators({
+    arrayInsert
+},dispatch)
+
+export default connect(null,mapDispatchToProps)(CreditList)

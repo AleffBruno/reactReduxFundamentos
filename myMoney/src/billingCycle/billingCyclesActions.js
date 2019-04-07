@@ -4,6 +4,7 @@ import { reset as resetForm, initialize } from 'redux-form';
 import { selectTab, showTabs } from '../common/tab/tabActions'
 
 const BASE_URL = 'http://localhost:3003/api'
+//este valor credits com array de obj vazio é para quando for incluir um valor, pelo menos um input apareça no formulario
 const INITIAL_VALUES= {credits:[{}]}
 
 export function getList() {

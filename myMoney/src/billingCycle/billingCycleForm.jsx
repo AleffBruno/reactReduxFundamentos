@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+//formValueSelector é responsavel por pegar um valor dentro do formulario
 import { reduxForm, Field, formValueSelector } from 'redux-form'
 
 import {init} from './billingCyclesActions'
@@ -9,6 +10,7 @@ import CreditList from './creditList'
 
 class BillingCycleForm extends Component {
     render() {
+        //estou usando credits aqui pois ja fiz o mapeamento dele no mapStateToProps
         const { handleSubmit, readOnly, credits } = this.props
         return (
             <form role='form' onSubmit={handleSubmit}>
@@ -37,6 +39,7 @@ class BillingCycleForm extends Component {
 BillingCycleForm = reduxForm({form:'billingCycleForm',destroyOnUnmount:false})(BillingCycleForm)
 const selector = formValueSelector('billingCycleForm')
 
+//quero pegar os campos "creditos" na aba inserir e colocar na chave "credits"
 const mapStateToProps = (state) => ({
     credits: selector(state, 'credits')
 })
