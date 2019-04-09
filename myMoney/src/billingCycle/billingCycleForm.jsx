@@ -10,8 +10,8 @@ import ItemList from './itemList'
 
 class BillingCycleForm extends Component {
     render() {
-        //estou usando credits aqui pois ja fiz o mapeamento dele no mapStateToProps
-        const { handleSubmit, readOnly, credits } = this.props
+        //estou usando credits/debts aqui pois ja fiz o mapeamento dele no mapStateToProps
+        const { handleSubmit, readOnly, credits, debts } = this.props
         return (
             <form role='form' onSubmit={handleSubmit}>
                 <div className='box-body'>
@@ -24,6 +24,8 @@ class BillingCycleForm extends Component {
                         label='ano' cols='12 4' placeholder='informe o ano'/>
                     <ItemList cols='12 6' list={credits} readOnly={readOnly}
                         field='credits' legend='Créditos'/>
+                    <ItemList cols='12 6' list={debts} readOnly={readOnly}
+                        field='debts' legend='Débitos' showStatus={true}/>
                 </div>
                 <div className='box-footer'>
                     <button type='submit' className={`btn btn-${this.props.submitClass}`}>
@@ -42,8 +44,10 @@ const selector = formValueSelector('billingCycleForm')
 
 //quero pegar os campos "creditos" na aba inserir e colocar na chave "credits"
 const mapStateToProps = (state) => ({
-    credits: selector(state, 'credits')
+    credits: selector(state, 'credits'),
+    debts: selector(state,'debts')
 })
+
 const mapDispatchToProps = dispatch => bindActionCreators({
     init
 },dispatch)

@@ -5,7 +5,7 @@ import { selectTab, showTabs } from '../common/tab/tabActions'
 
 const BASE_URL = 'http://localhost:3003/api'
 //este valor credits com array de obj vazio é para quando for incluir um valor, pelo menos um input apareça no formulario
-const INITIAL_VALUES= {credits:[{}]}
+const INITIAL_VALUES= {credits:[{}], debts:[{}]}
 
 export function getList() {
     const request = axios.get(`${BASE_URL}/billingCycles`)
@@ -16,7 +16,7 @@ export function getList() {
 }
 
 export function create(values) {
-    //console.log(values)
+    console.log(values)
     return submit(values, 'post')
 }
 
